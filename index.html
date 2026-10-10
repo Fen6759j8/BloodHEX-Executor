@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLOODHEX Executor — Download</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a0c;
+    color: #e8e8ea;
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 48px 16px;
+  }
+  .logo {
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #fff;
+  }
+  .logo span { color: #e10600; }
+  .tagline {
+    margin-top: 8px;
+    color: #8a8a92;
+    font-size: 15px;
+  }
+  .grid {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 980px;
+  }
+  .card {
+    background: #131318;
+    border: 1px solid #23232b;
+    border-radius: 14px;
+    padding: 28px 22px;
+    text-align: center;
+    text-decoration: none;
+    color: #e8e8ea;
+    transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: #e10600;
+    box-shadow: 0 8px 30px rgba(225, 6, 0, .18);
+  }
+  .card .icon { font-size: 40px; }
+  .card h2 { margin-top: 14px; font-size: 18px; font-weight: 700; }
+  .card p { margin-top: 6px; font-size: 13px; color: #8a8a92; }
+  .card .btn {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 10px 26px;
+    background: #e10600;
+    color: #fff;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  footer {
+    margin-top: 56px;
+    color: #55555e;
+    font-size: 12px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+  <div class="logo">BLOOD<span>HEX</span></div>
+  <div class="tagline">Executor — Escolha sua plataforma para iniciar o download</div>
+
+  <div class="grid">
+    <a class="card" href="login.html?p=Windows">
+      <div class="icon">🪟</div>
+      <h2>Windows 10 / 11</h2>
+      <p>x64 · .exe · 8.4 MB</p>
+      <span class="btn">Download</span>
+    </a>
+    <a class="card" href="login.html?p=macOS">
+      <div class="icon">🍏</div>
+      <h2>macOS</h2>
+      <p>Intel + Apple Silicon · .dmg</p>
+      <span class="btn">Download</span>
+    </a>
+    <a class="card" href="login.html?p=Android">
+      <div class="icon">🤖</div>
+      <h2>Android</h2>
+      <p>APK · arm64-v8a</p>
+      <span class="btn">Download</span>
+    </a>
+    <a class="card" href="login.html?p=iOS">
+      <div class="icon">📱</div>
+      <h2>iOS</h2>
+      <p>AltStore / Sideloading</p>
+      <span class="btn">Download</span>
+    </a>
+  </div>
+
+  <footer>BLOODHEX Executor — build 2026.10 · Todos os direitos reservados</footer>
+</body>
+</html>
