@@ -1,108 +1,454 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BLOODHEX Executor — Download</title>
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    background: #0a0a0c;
-    color: #e8e8ea;
-    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 48px 16px;
-  }
-  .logo {
-    font-size: 42px;
-    font-weight: 800;
-    letter-spacing: 2px;
-    color: #fff;
-  }
-  .logo span { color: #e10600; }
-  .tagline {
-    margin-top: 8px;
-    color: #8a8a92;
-    font-size: 15px;
-  }
-  .grid {
-    margin-top: 48px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-    width: 100%;
-    max-width: 980px;
-  }
-  .card {
-    background: #131318;
-    border: 1px solid #23232b;
-    border-radius: 14px;
-    padding: 28px 22px;
-    text-align: center;
-    text-decoration: none;
-    color: #e8e8ea;
-    transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
-  }
-  .card:hover {
-    transform: translateY(-4px);
-    border-color: #e10600;
-    box-shadow: 0 8px 30px rgba(225, 6, 0, .18);
-  }
-  .card .icon { font-size: 40px; }
-  .card h2 { margin-top: 14px; font-size: 18px; font-weight: 700; }
-  .card p { margin-top: 6px; font-size: 13px; color: #8a8a92; }
-  .card .btn {
-    display: inline-block;
-    margin-top: 18px;
-    padding: 10px 26px;
-    background: #e10600;
-    color: #fff;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 14px;
-  }
-  footer {
-    margin-top: 56px;
-    color: #55555e;
-    font-size: 12px;
-    text-align: center;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BLOODHEX Executor — Roblox Script Executor</title>
+  <meta name="description" content="BLOODHEX Executor — executor de scripts Roblox rápido, estável e leve para Windows e Android.">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <div class="logo">BLOOD<span>HEX</span></div>
-  <div class="tagline">Executor — Escolha sua plataforma para iniciar o download</div>
 
-  <div class="grid">
-    <a class="card" href="login.html?p=Windows">
-      <div class="icon">🪟</div>
-      <h2>Windows 10 / 11</h2>
-      <p>x64 · .exe · 8.4 MB</p>
-      <span class="btn">Download</span>
-    </a>
-    <a class="card" href="login.html?p=macOS">
-      <div class="icon">🍏</div>
-      <h2>macOS</h2>
-      <p>Intel + Apple Silicon · .dmg</p>
-      <span class="btn">Download</span>
-    </a>
-    <a class="card" href="login.html?p=Android">
-      <div class="icon">🤖</div>
-      <h2>Android</h2>
-      <p>APK · arm64-v8a</p>
-      <span class="btn">Download</span>
-    </a>
-    <a class="card" href="login.html?p=iOS">
-      <div class="icon">📱</div>
-      <h2>iOS</h2>
-      <p>AltStore / Sideloading</p>
-      <span class="btn">Download</span>
-    </a>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow--one" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow--two" aria-hidden="true"></div>
+
+  <!-- ================= HEADER ================= -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a class="brand" href="#inicio">
+        <img class="brand__logo" src="assets/logo.png" alt="BLOODHEX">
+        <span class="brand__name">Blood<span class="accent">hex</span></span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Principal">
+        <a class="nav__link" href="#inicio">Início</a>
+        <a class="nav__link" href="#download">Download</a>
+        <a class="nav__link" href="#recursos">Recursos</a>
+        <a class="nav__link" href="#scripts">Scripts</a>
+        <a class="nav__link" href="#faq">FAQ</a>
+        <a class="nav__link nav__link--cta" id="nav-download" href="#download" data-download="windows">Baixar</a>
+      </nav>
+
+      <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="inicio">
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <span class="pill"><span class="pill__dot"></span> v2.6.1 · Atualizado para o patch atual</span>
+
+        <h1 class="hero__title">
+          Blood<span class="accent">hex</span><br>
+          Executor
+        </h1>
+
+        <p class="hero__subtitle">
+          Executor de scripts Roblox leve, rápido e com interface limpa.
+          Suporte completo a Luau, script hub integrado e execução estável
+          no Windows e Android.
+        </p>
+
+        <div class="hero__actions">
+          <a class="btn btn--primary btn--lg" id="hero-download" href="#download" data-download="windows">
+            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Baixar para Windows
+          </a>
+          <a class="btn btn--ghost btn--lg" href="#download">
+            Ver plataformas
+          </a>
+        </div>
+
+        <div class="hero__platforms">
+          <a class="btn btn--platform btn--ghost" href="#download" data-download="windows">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="8" height="8"/><rect x="13" y="4" width="8" height="8"/><rect x="3" y="14" width="8" height="7"/><rect x="13" y="14" width="8" height="7"/></svg>
+            Windows <span>x64</span>
+          </a>
+          <a class="btn btn--platform btn--android" href="#download" data-download="android">
+            <svg viewBox="0 0 24 24"><path d="M5 9a7 7 0 0 1 14 0v8H5V9z"/><path d="M8 4L6.5 2M16 4l1.5-2"/><circle cx="9.5" cy="10" r=".6" fill="currentColor" stroke="none"/><circle cx="14.5" cy="10" r=".6" fill="currentColor" stroke="none"/></svg>
+            Android <span>apk</span>
+          </a>
+          <a class="btn btn--platform btn--ios" href="#download" data-download="ios">
+            <svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2.5"/><line x1="10.5" y1="18.6" x2="13.5" y2="18.6"/></svg>
+            iOS <span>sideload</span>
+          </a>
+        </div>
+
+        <ul class="hero__meta">
+          <li><strong>85K+</strong> downloads</li>
+          <li><strong>1.2K+</strong> scripts no hub</li>
+          <li><strong>99.9%</strong> uptime</li>
+          <li><strong>&lt;3s</strong> inicialização</li>
+        </ul>
+      </div>
+
+      <div class="hero__art">
+        <div class="hero__logo-wrap">
+          <div class="hero__logo-ring" aria-hidden="true"></div>
+          <img class="hero__logo" src="assets/logo.png" alt="Logo BLOODHEX">
+        </div>
+
+        <pre class="code-card"><code><span class="c-cmt">-- BLOODHEX · execução instantânea</span>
+<span class="c-key">local</span> <span class="c-var">Players</span> = game:<span class="c-fn">GetService</span>(<span class="c-str">"Players"</span>)
+<span class="c-key">local</span> <span class="c-var">lp</span> = <span class="c-var">Players</span>.LocalPlayer
+
+<span class="c-fn">print</span>(<span class="c-str">"Bem-vindo, "</span> .. <span class="c-var">lp</span>.Name)
+
+<span class="c-key">local function</span> <span class="c-fn">speed</span>(<span class="c-var">v</span>)
+  <span class="c-var">lp</span>.Character.Humanoid.WalkSpeed = <span class="c-var">v</span>
+<span class="c-key">end</span>
+
+<span class="c-fn">speed</span>(<span class="c-str">200</span>)</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STRIP ================= -->
+  <div class="strip">
+    <div class="container strip__inner">
+      <span>Compatível com <strong>Windows 10 / 11</strong></span>
+      <span class="strip__sep" aria-hidden="true"></span>
+      <span><strong>Android 8+</strong></span>
+      <span class="strip__sep" aria-hidden="true"></span>
+      <span>Suporte a <strong>Luau</strong></span>
+      <span class="strip__sep" aria-hidden="true"></span>
+      <span>Atualizações <strong>automáticas</strong></span>
+      <span class="strip__sep" aria-hidden="true"></span>
+      <span><strong>Sem key</strong> / sem espera</span>
+    </div>
   </div>
 
-  <footer>BLOODHEX Executor — build 2026.10 · Todos os direitos reservados</footer>
+  <!-- ================= DOWNLOAD ================= -->
+  <section class="section" id="download">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">Download</span>
+        <h2 class="section__title">Escolha sua plataforma</h2>
+        <p class="section__lead">
+          Selecione o sistema e baixe a versão mais recente do BLOODHEX.
+          Todas as builds passam por verificação antes de publicar.
+        </p>
+      </div>
+
+      <div class="grid grid--download">
+
+        <!-- Windows -->
+        <div class="dl-card">
+          <div class="dl-card__icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="8" height="8"/><rect x="13" y="4" width="8" height="8"/><rect x="3" y="14" width="8" height="7"/><rect x="13" y="14" width="8" height="7"/></svg>
+          </div>
+          <h3 class="dl-card__title">Windows</h3>
+          <p class="dl-card__text">Executor completo com script hub, multi-execução e atalhos personalizáveis.</p>
+          <ul class="dl-card__list">
+            <li>Windows 10 / 11 (x64)</li>
+            <li>Arquivo .exe · portátil</li>
+            <li>Suporte a LuaU completo</li>
+          </ul>
+          <a class="btn btn--primary btn--platform" href="#download" data-download="windows">
+            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Baixar .exe
+          </a>
+          <p class="dl-card__ver">v2.6.1 · 8.4 MB · assinado digitalmente</p>
+        </div>
+
+        <!-- Android (destaque) -->
+        <div class="dl-card dl-card--highlight">
+          <span class="dl-card__tag">Recomendado</span>
+          <div class="dl-card__icon">
+            <svg viewBox="0 0 24 24"><path d="M5 9a7 7 0 0 1 14 0v8H5V9z"/><path d="M8 4L6.5 2M16 4l1.5-2"/><circle cx="9.5" cy="10" r=".6" fill="currentColor" stroke="none"/><circle cx="14.5" cy="10" r=".6" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <h3 class="dl-card__title">Android</h3>
+          <p class="dl-card__text">Versão mobile leve com interface touch otimizada e execução em segundo plano.</p>
+          <ul class="dl-card__list">
+            <li>Android 8.0 ou superior</li>
+            <li>APK · arm64-v8a</li>
+            <li>Sem necessidade de root</li>
+          </ul>
+          <a class="btn btn--android-solid btn--platform" href="#download" data-download="android">
+            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Baixar APK
+          </a>
+          <p class="dl-card__ver">v2.6.1 · 12.1 MB</p>
+        </div>
+
+        <!-- iOS -->
+        <div class="dl-card">
+          <div class="dl-card__icon">
+            <svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2.5"/><line x1="10.5" y1="18.6" x2="13.5" y2="18.6"/></svg>
+          </div>
+          <h3 class="dl-card__title">iOS</h3>
+          <p class="dl-card__text">Versão para sideloading via AltStore, SideStore ou TrollStore.</p>
+          <ul class="dl-card__list">
+            <li>iOS 15 ou superior</li>
+            <li>IPA · sem App Store</li>
+            <li>Requer AltStore / SideStore</li>
+          </ul>
+          <a class="btn btn--ghost btn--platform" href="#download" data-download="ios">
+            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Baixar IPA
+          </a>
+          <p class="dl-card__ver">v2.6.0 · 14.8 MB</p>
+        </div>
+
+      </div>
+
+      <p class="section__note" id="download-note">
+        Instalação no Windows: descompacte e execute <code>BloodHEX.exe</code> como administrador.
+        No Android, habilite <em>“Fontes desconhecidas”</em> antes de instalar o APK.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= RECURSOS ================= -->
+  <section class="section section--alt" id="recursos">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">Recursos</span>
+        <h2 class="section__title">Tudo que você precisa</h2>
+        <p class="section__lead">
+          Feito para quem quer executar scripts sem travamento, sem complicação
+          e sem perder tempo com configurção.
+        </p>
+      </div>
+
+      <div class="grid grid--features">
+
+        <div class="card">
+          <div class="card__icon">
+            <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <h3 class="card__title">Execução ultrarrápida</h3>
+          <p class="card__text">Inicialização em menos de 3 segundos e execução de scripts pesados sem quedas de FPS.</p>
+        </div>
+
+        <div class="card">
+          <div class="card__icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 class="card__title">Estabilidade real</h3>
+          <p class="card__text">Motor de injeção atualizado a cada patch do Roblox. Menos crashes, mais sessões longas.</p>
+        </div>
+
+        <div class="card">
+          <div class="card__icon">
+            <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <h3 class="card__title">Suporte Luau completo</h3>
+          <p class="card__text">Closures, metatables, hookfunction, identifyexecutor e as APIs mais usadas pelos scripts.</p>
+        </div>
+
+        <div class="card">
+          <div class="card__icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          </div>
+          <h3 class="card__title">Script hub integrado</h3>
+          <p class="card__text">Mais de 1.200 scripts organizados por jogo, com atualização automática e busca instantânea.</p>
+        </div>
+
+        <div class="card">
+          <div class="card__icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </div>
+          <h3 class="card__title">Totalmente personalizável</h3>
+          <p class="card__text">Temas, atalhos, posição da janela e comportamento pós-execução do seu jeito.</p>
+        </div>
+
+        <div class="card">
+          <div class="card__icon">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h3 class="card__title">Suporte ativo</h3>
+          <p class="card__text">Comunidade no Discord com suporte diário, avisos de patch e builds beta.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SCRIPTS ================= -->
+  <section class="section" id="scripts">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">Script hub</span>
+        <h2 class="section__title">Scripts em destaque</h2>
+        <p class="section__lead">
+          Copie com um clique e cole direto no executor. A biblioteca completa
+          está dentro do app.
+        </p>
+      </div>
+
+      <div class="grid grid--scripts">
+
+        <div class="script-card">
+          <div class="script-card__top">
+            <span class="script-card__badge script-card__badge--hot">Popular</span>
+          </div>
+          <span class="script-card__game">Blox Fruits</span>
+          <h3 class="script-card__title">Hex Hub</h3>
+          <p class="script-card__text">Auto farm, auto raid, ESP de frutas e boss tracker.</p>
+          <div class="script-card__foot">
+            <span class="script-card__meta">v3.4 · 12k usos</span>
+            <button class="icon-btn" data-copy='loadstring(game:HttpGet("https://raw.githubusercontent.com/hexhub/blox/main/loader.lua"))()'>Copiar</button>
+          </div>
+        </div>
+
+        <div class="script-card">
+          <div class="script-card__top">
+            <span class="script-card__badge">Novo</span>
+          </div>
+          <span class="script-card__game">Pet Simulator 99</span>
+          <h3 class="script-card__title">PS99 Auto Trader</h3>
+          <p class="script-card__text">Auto farm de gems, hatch automático e trade assistant.</p>
+          <div class="script-card__foot">
+            <span class="script-card__meta">v1.9 · 8k usos</span>
+            <button class="icon-btn" data-copy='loadstring(game:HttpGet("https://raw.githubusercontent.com/hexhub/ps99/main/main.lua"))()'>Copiar</button>
+          </div>
+        </div>
+
+        <div class="script-card">
+          <div class="script-card__top">
+            <span class="script-card__badge">Estável</span>
+          </div>
+          <span class="script-card__game">Doors</span>
+          <h3 class="script-card__title">Door ESP Pack</h3>
+          <p class="script-card__text">ESP de itens, monstros, key finder e auto door.</p>
+          <div class="script-card__foot">
+            <span class="script-card__meta">v2.1 · 6k usos</span>
+            <button class="icon-btn" data-copy='loadstring(game:HttpGet("https://raw.githubusercontent.com/hexhub/doors/main/esp.lua"))()'>Copiar</button>
+          </div>
+        </div>
+
+        <div class="script-card">
+          <div class="script-card__top">
+            <span class="script-card__badge">Universal</span>
+          </div>
+          <span class="script-card__game">Qualquer jogo</span>
+          <h3 class="script-card__title">BLOOD ToolKit</h3>
+          <p class="script-card__text">Infinite yield, ESP universal, speed e fly abertos.</p>
+          <div class="script-card__foot">
+            <span class="script-card__meta">v5.0 · 20k usos</span>
+            <button class="icon-btn" data-copy='loadstring(game:HttpGet("https://raw.githubusercontent.com/hexhub/toolkit/main/load.lua"))()'>Copiar</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA ================= -->
+  <section class="cta">
+    <div class="container">
+      <div class="cta__inner">
+        <h2 class="cta__title">Pronto para executar?</h2>
+        <p class="cta__text">
+          Baixe o BLOODHEX, cole seu script e execute — sem key, sem espera, sem enrolação.
+        </p>
+        <div class="cta__buttons">
+          <a class="btn btn--primary btn--lg" href="#download" data-download="windows">Baixar agora</a>
+          <a class="btn btn--ghost btn--lg" href="#faq">Dúvidas frequentes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">FAQ</span>
+        <h2 class="section__title">Perguntas frequentes</h2>
+      </div>
+
+      <div class="faq">
+
+        <div class="faq__item">
+          <button class="faq__q" aria-expanded="false">
+            Preciso pagar para usar?
+            <span class="faq__icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq__a">
+            <p>Não. O BLOODHEX é gratuito para Windows e Android. Versões premium com recursos extras podem aparecer no futuro, mas a base continua free.</p>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__q" aria-expanded="false">
+            O executor tem key system?
+            <span class="faq__icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq__a">
+            <p>Não. Baixou, abriu e executou. Sem link shortener, sem key system, sem tempo de espera.</p>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__q" aria-expanded="false">
+            Meu antivírus acusou o executor. É falso positivo?
+            <span class="faq__icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq__a">
+            <p>Sim. Qualquer executor injeta código no cliente do Roblox, então antivírus heurísticos sempre marcam. Adicione a pasta à lista de exceções.</p>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__q" aria-expanded="false">
+            Quais jogos são compatíveis?
+            <span class="faq__icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq__a">
+            <p>Todos os jogos Roblox que usam Luau padrão. Alguns jogos com anti-cheat próprio podem exigir bypass — avisamos no Discord quando há mudanças.</p>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__q" aria-expanded="false">
+            Como recebo suporte?
+            <span class="faq__icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq__a">
+            <p>Entre no servidor oficial do Discord. O suporte diário, avisos de atualização e builds beta são publicados por lá.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img class="footer__logo" src="assets/logo.png" alt="BLOODHEX">
+        <div>
+          <div class="brand__name">Blood<span class="accent">hex</span></div>
+          <p class="footer__tag">Executor de scripts para Roblox.</p>
+        </div>
+      </div>
+
+      <nav class="footer__nav" aria-label="Rodapé">
+        <a href="#inicio">Início</a>
+        <a href="#download">Download</a>
+        <a href="#recursos">Recursos</a>
+        <a href="#scripts">Scripts</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </div>
+
+    <div class="footer__bottom container">
+      <span>© <span id="year">2026</span> BLOODHEX. Todos os direitos reservados.</span>
+      <span class="footer__warn">Não afiliado à Roblox Corporation.</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
